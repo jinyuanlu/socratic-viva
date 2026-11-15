@@ -123,6 +123,10 @@ case "$path" in
   */topics/*/exams/*.md)
     topic=${path%/exams/*}
     [ -f "$topic/charter.md" ] || exit 0
+    # Everything merged in from another topic is history, charter copy included.
+    case "$path" in */exams/from-*)
+      [ "$writing" = yes ] && deny "this file was merged in from another topic. It is a record and cannot be changed." ;;
+    esac
     status=$(status_of "$path")
     case "$status" in
       closed|abandoned)

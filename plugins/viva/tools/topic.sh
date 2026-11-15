@@ -103,9 +103,18 @@ check_topic() {
     if two_level "$t"; then
       echo "  note: two-level syllabus, skill-map rows not compared"
     elif [ "$(areas_of "$t")" != "$(rows_of "$t")" ]; then
-      fail "skill-map rows differ from the syllabus areas (same names, same order, one row each)"
+      # Older versions shortened row names. That is tolerated in an existing
+      # folder (rows match areas by order) but not in a file just written.
+      if [ "${STRICT:-0}" = 1 ] || [ "$(areas_of "$t" | wc -l)" -ne "$(rows_of "$t" | wc -l)" ]; then
+        fail "skill-map rows differ from the syllabus areas (same names, same order, one row each)"
+      else
+        echo "  note: skill-map row names differ from the syllabus (older format); matched by order"
+      fi
     fi
-    levels_of "$t" | grep -qv '^[0-5]$' && fail "a level is not a number from 0 to 5"
+    if levels_of "$t" | grep -qv '^[0-5]$'; then
+      if [ "${STRICT:-0}" = 1 ]; then fail "a level is not a number from 0 to 5"
+      else echo "  note: a level is not a number from 0 to 5 (older format); read as 0"; fi
+    fi
     for n in $(debriefed_of "$t"); do
       found=no
       for f in "$t"/exams/[0-9]*.md; do
@@ -261,8 +270,9 @@ cmd_commit() {
   stamp=${p%%|*}; state=${p#*|}; state=${state%%|*}; arch="$root/archive/$stamp/topics"
   if [ "$state" = staged ]; then
     o=$(open_exams "$root"); [ -z "$o" ] || die "an exam is open ($o). Nothing was moved."
-    out=$(check_topic "$st") || { echo "$out"; die "the staged topic fails its checks. Nothing was moved."; }
+    out=$(STRICT=1 check_topic "$st") || { echo "$out"; die "the staged topic fails its checks. Nothing was moved."; }
     unchanged sums-exams "$st/exams/from-$2" "the merged-in exam files differ from the source's."
+    cmp -s "$src/charter.md" "$st/exams/from-$2/source-charter.md" || die "the copy of the source's charter was altered. Nothing was moved."
     unchanged sums-source "$src" "the topic $2 has changed since it was staged. Run abort, then stage again."
     unchanged sums-target "$tgt" "the topic $3 has changed since it was staged. Run abort, then stage again."
     names_of "$st" | grep -Fxq -e "$(title_of "$src" | lower)" ||

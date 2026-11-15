@@ -28,6 +28,7 @@ same_exams() {
   if [ -f "$T/x$nx/source-charter.md" ]; then rm "$T/x$nx/source-charter.md"; same "$1" "$2" "$T/x$nx"; else no "$1 (no source-charter.md)"; fi
 }
 last() { tail -n 1 "$R/journal"; }
+title_of_fixture() { sed -n '1s/^# *//p' "$1"; }
 stamp() { last | cut -d'|' -f1; }
 
 # A new, empty study folder in $R. Its path contains a space.
@@ -139,12 +140,23 @@ broken() {
 }
 broken "no title" "no title line" charter.md 'NR > 1'
 broken "no syllabus areas" "no syllabus areas" charter.md '!/^[0-9]\. /'
-broken "a row is named differently" "rows differ" learning.md '{ sub(/t basics \|/, "t basic |"); print }'
 broken "a row is missing" "rows differ" learning.md '!/^\| 2\./'
 broken "an area has no row" "rows differ" charter.md '{ print } /^3\. / { print "4. one more" }'
-broken "rows are in another order" "rows differ" learning.md '/^\| 1\./ { keep = $0; next } { print } /^\| 2\./ { print keep }'
-broken "a level is 7" "not a number from 0 to 5" learning.md '{ sub(/basics \| 2 \|/, "basics | 7 |"); print }'
-broken "a level is a word" "not a number from 0 to 5" learning.md '{ sub(/basics \| 2 \|/, "basics | high |"); print }'
+# Shapes that older versions wrote: a note in an existing folder, an error
+# in a file that was just written (STRICT, which is what commit uses).
+legacy() {
+  fresh; topic t "Some Topic"; exam t 001 closed; debrief t 001
+  edit "$R/topics/t/learning.md" "$3"
+  run 0 "check passes with a note: $1" check "$R/topics/t"
+  says "  and says what it tolerated" "$2"
+  export STRICT=1
+  run 1 "strict check fails: $1" check "$R/topics/t"
+  unset STRICT
+}
+legacy "a row is named differently" "older format" '{ sub(/t basics \|/, "t basic |"); print }'
+legacy "rows are in another order" "older format" '/^\| 1\./ { keep = $0; next } { print } /^\| 2\./ { print keep }'
+legacy "a level is 7" "older format" '{ sub(/basics \| 2 \|/, "basics | 7 |"); print }'
+legacy "a level is a word" "older format" '{ sub(/basics \| 2 \|/, "basics | high |"); print }'
 broken "a debriefed exam has no record" "debriefed exam 7 has no record" learning.md '{ print } END { print "- 007" }'
 broken "a record has no status" "has no valid status" exams/001-2026-02-01.md '!/^- Status:/'
 broken "a record has an unknown status" "has no valid status" exams/001-2026-02-01.md '{ sub(/Status: closed/, "Status: finished"); print }'
@@ -267,6 +279,9 @@ unmoved "altered record"
 staged_pair; echo "tampered" >> "$ST/exams/from-src/002-2026-02-01.key.md"
 run 1 "refused: a merged-in answer key was altered" commit "$R" src tgt
 unmoved "altered key"
+staged_pair; echo "tampered" >> "$ST/exams/from-src/source-charter.md"
+run 1 "refused: the copy of the source's charter was altered" commit "$R" src tgt
+unmoved "altered source charter"
 staged_pair; mv "$ST/exams/from-src/002-2026-02-01.md" "$ST/exams/from-src/003-2026-02-01.md"
 run 1 "refused: a merged-in exam record was renumbered" commit "$R" src tgt
 unmoved "renumbered record"
@@ -419,6 +434,26 @@ is "both old names are aliases" grep -qx -e "- Also called: Japonés para viajar
 run 1 "a title that is another topic's, in other letter case, is refused" rename "$R" "中文" x "OPERATING systems"
 run 1 "an alias in a non-ASCII script cannot be taken by another topic" rename "$R" operating-systems os "日本語 の勉強"
 run 0 "check-root passes at the end" check-root "$R"
+
+echo "# study folders written by earlier versions (tests/fixtures)"
+F="$(dirname "$tool")/../../../tests/fixtures"
+if [ -d "$F/study-v0.3" ] && [ -d "$F/study-v0.2" ]; then
+  run 0 "the v0.3 folder passes check-root" check-root "$F/study-v0.3"
+  run 0 "a v0.2 topic with unnumbered rows and no key passes check" check "$F/study-v0.2/topics/sql-indexing"
+  run 0 "the v0.2 folder passes check-root" check-root "$F/study-v0.2"
+  says "  and notes the level that is not a number" "older format"
+  fresh; cp -Rp "$F/study-v0.3/topics/." "$R/topics/"; cp -Rp "$R/topics" "$T/v03"
+  run 0 "v0.3: rename" rename "$R" tcp-congestion-control tcp "TCP"
+  same "v0.3: exams byte-identical after the rename" "$T/v03/tcp-congestion-control/exams" "$R/topics/tcp/exams"
+  run 0 "v0.3: stage" stage "$R" sql-indexing tcp
+  A="$(title_of_fixture "$T/v03/sql-indexing/charter.md")" edit "$R/staging/topics/tcp/charter.md" '{ sub(/^- Also called: .*/, "&; " ENVIRON["A"]); print }'
+  run 0 "v0.3: commit" commit "$R" sql-indexing tcp
+  same "v0.3: the archived source is identical" "$T/v03/sql-indexing" "$R/archive/$(stamp)/topics/sql-indexing"
+  is "v0.3: the old exams are still in place" cmp "$T/v03/tcp-congestion-control/exams/001-2026-11-15.md" "$R/topics/tcp/exams/001-2026-11-15.md"
+  run 0 "v0.3: check-root passes afterwards" check-root "$R"
+else
+  echo "skipped: no tests/fixtures"
+fi
 
 rm -f "$T/out"
 echo

@@ -53,9 +53,10 @@ go on.
 ## No argument: the list
 
 1. Run `check-root` and report everything it finds. If it reports
-   an unfinished operation, offer two ways out and wait: finish
-   the merge (step 3 below on the staged copy, then `commit`), or
-   `abort`, which changes no topic.
+   an unfinished merge, offer two ways out and wait: finish it
+   (step 3 below on the staged copy, then `commit`), or `abort`,
+   which changes no topic. An unfinished rename is finished by
+   running the same `rename` again; it cannot be aborted.
 2. Search the charters as state.md describes ("Finding a topic",
    step 2), with `- Kind:`, `- Working language:` and
    `- Exam conditions:` added to the pattern.

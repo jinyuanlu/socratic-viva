@@ -158,6 +158,7 @@ What an older folder may look like, and how to treat it:
 | Exam record with `## Defence notes`, and no `## Probe review` | Valid. Read the notes as the defence |
 | `learning.md` with no `Diagnostic:` line | `Diagnostic: done` |
 | Skill-map row names shortened, or without numbers | Match rows to areas by order. Write the full names the next time the file is saved |
+| A skill-map level that is not a number, such as `unplaced` | Level 0, and `Diagnostic: pending`. Write the number the next time the file is saved |
 | No `asked.md` | Start one at the next question. An exam may repeat practice from before it existed |
 | Charter with no `Also called` line; profile with no `## About the learner` | Empty |
 
