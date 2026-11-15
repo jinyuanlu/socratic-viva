@@ -79,10 +79,14 @@ write them in the charter (`Standard` and `Sources`).
   assumptions, and reasons aloud. Weak communication of a correct
   answer is an edge, and the verdict names it.
 - Behavioural formats: the Core part is the learner's own account
-  of a real situation. The Foundations probing asks what the
-  learner did personally, why, what else was possible, and what
-  the result was. The Transfer part is a hypothetical, or the same
-  account seen from another person's position.
+  of a real situation. The Transfer part is a hypothetical, or the
+  same account seen from another person's position. In an exam,
+  every account gets the same four fixed follow-ups, in these
+  words and in this order, before any other probe: "What did you
+  do yourself?", "Why that, and not something else?", "What else
+  was possible?", "What was the result?". A point that appears
+  only in answer to one of them is an edge in the account as
+  first told.
 - Work only with the learner's real experience. Help to select and
   structure true accounts. Never invent experience, results, or
   numbers for the learner, and do not coach them to.

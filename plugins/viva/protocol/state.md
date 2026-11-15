@@ -112,6 +112,7 @@ Make one only when the learner agrees, and log it under
     # Learning state: <topic>
     - Updated: YYYY-MM-DD
     - Target level: 4
+    - Diagnostic: done | pending
 
     ## Skill map
     | Area | Level | Checks at next level | Last tested | Next review |
@@ -135,6 +136,11 @@ Rules for this file:
   for word.
 - `Level` is always a number from 0 to 5. Leave `Last tested` and
   `Next review` empty for an area that has not been worked on.
+- `Checks at next level` counts the independent checks passed
+  towards the next level. It returns to 0 when the level changes.
+- `Diagnostic: pending` means some areas have a level of 0 only
+  because they were never placed.
+- A line under `## Sessions` is one sentence.
 - `## Misconceptions` holds specific wrong beliefs only ("thinks
   X causes Y"). Something the learner does not know yet is not a
   misconception; the level already shows it.

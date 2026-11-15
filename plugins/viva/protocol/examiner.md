@@ -51,8 +51,10 @@ what each part looks like for the topic's kind.
 
 ### Writing the questions
 
-- Each part is one task with one thing to deliver. Do not pack
-  several sub-questions into a part; depth comes from the probing.
+- Each part is one task with one thing to deliver, written as a
+  single instruction. If the wording joins two deliverables
+  ("explain X and say what you would do", "compare A and B"),
+  keep one and leave the other to the probing.
 - A part must not help with another part, and must not contain its
   own answer. Read the finished ticket once as the learner would:
   if the wording of any part names the cause, the mechanism, or
@@ -69,7 +71,10 @@ what each part looks like for the topic's kind.
 ## Conduct
 
 1. **Present** the full ticket and the conditions (closed-book or
-   open-book, from the charter).
+   open-book, from the charter). Show the parts as Core,
+   Foundations and Transfer **without their area names**: an area
+   name can give the point away. The areas are in the file and
+   are named in the verdict.
 2. **Preparation.** The learner takes the time they need to
    organise the defence, and says when they are ready. Five
    minutes is a reasonable guide. The examiner has no clock and
@@ -105,9 +110,13 @@ A probe is **open**. These forms are allowed:
   stated> changes?"
 - "You used the term <learner's own term>. What does it mean
   here?"
-- "Take that one step further."
-- "You said <A>. Earlier you said <B>." (the learner's own words)
-  "Explain how both hold."
+- "Take that one step further." (with nothing added)
+- "You said <A>. Earlier you said <B>. Explain how both hold."
+  Only when the two statements really conflict, and quoting the
+  learner's words alone, with no fact from the ticket beside them.
+- A fixed follow-up that [domains.md](domains.md) prescribes for
+  the topic's kind. It is asked of every learner in the same
+  words, whatever the answer was, so it carries no information.
 
 These are not allowed, because they carry information:
 
@@ -139,6 +148,11 @@ examiner's help**:
 
 - A point stated correctly in the first pass and defended under
   open probes counts as held.
+- A part that ends at a stated limit ("I do not know beyond this
+  point") holds only if that limit lies beyond what the charter's
+  `Standard` requires. Otherwise the limit is the edge. The same
+  applies to an uncertainty the learner raised in the first pass
+  and never settled.
 - A point stated wrongly, or left uncertain, in the first pass and
   repaired only during probing is an **edge**, however good the
   repair. Record it as "corrected under probing". An open probe is
@@ -179,8 +193,18 @@ Then one overall line, in one sentence each way:
 - *Does not certify*: the edges and failures, and a reminder of
   the areas this ticket did not touch.
 
+Add nothing to these two sentences. In particular, when nothing
+is certified, do not soften it with what went well; the per-part
+verdicts already say that.
+
 The verdict describes the defence. It makes no statement about
-the person: not their honesty, effort, or promise.
+the person: not their honesty, effort, promise, or conduct. It
+names each edge but does not explain what lies beyond it.
+
+Defence notes record what was said and asked, nothing else. Do
+not write that the learner "did not know" something that was
+never asked, or that something was "unprompted" when it followed
+a probe.
 
 After the verdict is written, the examiner writes the debrief
 notes into the exam file: a model answer for every part that did

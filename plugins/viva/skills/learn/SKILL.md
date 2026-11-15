@@ -40,9 +40,12 @@ If the intent is unclear, ask one short question first.
 4. **Debrief first.** Read `charter.md`, and `learning.md` if it
    exists. If an exam that is closed or abandoned is not listed
    under `## Debriefed exams`, start with it (see "Debrief").
-5. **No `learning.md`** (a new topic, or a topic that so far has
-   only been examined): run the diagnostic over the areas that
-   have no evidence yet, then save `learning.md`.
+5. **Diagnostic.** If there is no `learning.md` (a new topic, or
+   a topic that so far has only been examined), or it says
+   `Diagnostic: pending`, run the diagnostic over the areas that
+   have no evidence yet, save, and set `Diagnostic: done`. If a
+   debrief has to save the file before that, it writes
+   `Diagnostic: pending`.
 6. **Then review.** Re-test, without warning, the areas whose
    `Next review` date is today or earlier.
 7. **Then new work.** The named area if the learner gave one,
@@ -65,8 +68,11 @@ If the intent is unclear, ask one short question first.
 
 ## Debrief
 
-- Read the exam file. The debrief comes from the written record,
-  also when the exam took place in this conversation.
+- Open the exam file and read all of it before the first debrief
+  message, also when the exam took place in this conversation.
+  The debrief comes from the written record, not from memory. Do
+  not say "the record says" about anything you have not just
+  read there.
 - Give the verdict. For each part that did not hold: ask the
   learner to try again first, then go through the debrief notes
   briefly, then re-test the point from a new angle. A re-test
@@ -74,8 +80,9 @@ If the intent is unclear, ask one short question first.
 - An abandoned exam is debriefed in the same way, for the parts
   the learner wants.
 - The edges and missing foundations become this session's agenda.
-- When every part has been covered, add the exam number to
-  `## Debriefed exams`. Save progress after each part.
+- When every item of the debrief notes has been covered, add the
+  exam number to `## Debriefed exams`. Save progress after each
+  part.
 - With no `learning.md` yet, exam evidence may place the examined
   areas: at most level 4 for a part that held, at most level 2
   for an edge, at most level 1 for a failure.
@@ -89,9 +96,19 @@ These replace the corresponding parts of the vendored method.
   names, word for word.
 - **State lives in files.** Ignore "save state" and "resume
   from:". Write `learning.md` after the diagnostic, after every
-  level change, after each part of a debrief, and at least after
-  every fourth answer from the learner. If the learner stops
-  suddenly, the file must already be correct.
+  level change, after each part of a debrief, whenever a
+  misconception appears or is resolved, and at least after every
+  fourth answer from the learner. If the learner stops suddenly,
+  the file must already be correct.
+- **Levels rise slowly.** A check counts towards the next level
+  only if its answer was not given or explained in the last three
+  exchanges. Record each one in `Checks at next level`. An area
+  rises by at most one level in a session: the second independent
+  check has to come from a later session, as a review. Placement
+  by the diagnostic or by exam evidence is not bound by this.
+- **Reviews are not announced.** Do not tell the learner which
+  area comes back next or when.
+- **The skill map is shown with the full area names.**
 - **Diagnostic questions.** One task per question. A question
   must not name the concept it is testing for. After the
   diagnostic, show the map and the proposed starting point, then

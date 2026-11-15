@@ -32,14 +32,16 @@ open, undebriefed, or abandoned.
 
 Show two blocks and keep them apart.
 
-**Practised** (from `learning.md`): the skill map with levels, the
-areas due for review, and the open misconceptions.
+**Practised** (from `learning.md`): the skill map with levels and
+full area names, the areas due for review, and the open
+misconceptions.
 
 **Certified** (from closed exam files): for each syllabus area,
 under its full name, the most recent verdict that covered it, with
 the exam number and date; or "not examined". An area counts as
-certified only if that verdict is "Holds". Then the overall line
-of the latest exam, word for word.
+certified only if that verdict is "Holds". Abandoned exams do not
+appear in this block. Then the overall line of the latest closed
+exam, word for word.
 
 Then, if they apply:
 
