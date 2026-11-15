@@ -28,22 +28,35 @@ says "certified".
 
 | Command | Mode | What it does |
 |---|---|---|
-| `/viva:learn [topic]` | Learn | Open/resume tutoring; diagnostic first on a new topic |
-| `/viva:drill [subskill]` | Learn | Focused probing round on one subskill |
-| `/viva:review` | Learn | Spaced review — unannounced re-probes, levels can drop |
-| `/viva:exam [topic]` | Exam | Draw a ticket and sit the oral exam; verdict is written to the record |
-| `/viva:debrief` | Bridge | After a verdict: model answers, and the exam's named edges become the tutoring agenda |
+| `/viva:learn [topic] [subskill]` | Learn | Tutoring: diagnostic on a new topic, weakest-first resume, spaced review built in; opens with the debrief if an exam verdict is waiting |
+| `/viva:exam [topic]` | Exam | Draw a ticket and sit the oral exam; the verdict is written to the record |
 | `/viva:status [topic]` | Meta | Skill map, exam history — practised vs certified, kept separate |
 
 Full specification: [COMMANDS.md](COMMANDS.md).
 
+## Install
+
+This repo is a plugin marketplace for both Codex and Claude Code;
+the plugin itself lives in `plugins/socratic-viva/` and carries a
+manifest for each system (`.codex-plugin/plugin.json`,
+`.claude-plugin/plugin.json`) over one shared skill.
+
+- **Codex** — Add plugin marketplace: source `jinyuanlu/socratic-viva`,
+  git ref `main`, sparse paths empty. Then install **socratic-viva**.
+- **Claude Code** — `/plugin marketplace add jinyuanlu/socratic-viva`,
+  then install **socratic-viva**.
+
 ## Files
 
-- `SKILL.md` — the two-mode system and the rules binding it
-- `landau-exam.md` — the examiner protocol (our design)
-- `COMMANDS.md` — the command interface
-- `vendor/socratic-tutor-SKILL.md` — Jane Street's Socratic tutor,
-  vendored verbatim (MIT, © Jane Street Group, LLC), from
+- `plugins/socratic-viva/skills/socratic-viva/SKILL.md` — the
+  two-mode system and the rules binding it
+- `plugins/socratic-viva/skills/socratic-viva/landau-exam.md` —
+  the examiner protocol (our design)
+- `plugins/socratic-viva/skills/socratic-viva/COMMANDS.md` — the
+  command interface
+- `plugins/socratic-viva/skills/socratic-viva/vendor/socratic-tutor-SKILL.md`
+  — Jane Street's Socratic tutor, vendored verbatim (MIT,
+  © Jane Street Group, LLC), from
   https://github.com/janestreet/agent_skills
 
 ## Why

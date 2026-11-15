@@ -1,0 +1,1 @@
+{"name":"socratic-viva","owner":{"name":"Jinyuan Lu"},"plugins":[{"description":"Learn Socratically, certify by viva: Socratic tutoring plus a Landau-school oral exam. Commands: /viva:learn, /viva:exam, /viva:status.","name":"socratic-viva","source":"./plugins/socratic-viva"}]}
