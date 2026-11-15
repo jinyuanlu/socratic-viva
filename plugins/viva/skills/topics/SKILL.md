@@ -100,9 +100,13 @@ steps in order.
 - Map every source area: it is either *the same as* target area
   n, or *new*. A new area is appended with the next free number.
   The numbers and names of the target's areas never change.
-- If the merged syllabus would have more than 10 areas, stop and
-  advise against the merge. Do not restructure the syllabus to
-  make it fit.
+- If the merged syllabus would have more than 10 areas, do not
+  stop. For each area beyond the tenth, propose one of two
+  things and let the learner choose: fold it into the nearest
+  target area (it is then mapped as *the same as* that area, and
+  the fold is written in the `## Changes` line), or leave it out
+  (it is then listed under `## Out of scope`). Do not renumber or
+  rename the target's areas to make room.
 - Show the mapping and the complete merged syllabus. Say that the
   source's exams become history and certify nothing in the merged
   topic, because they were graded against the source's standard.
