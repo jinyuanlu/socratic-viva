@@ -1,5 +1,3 @@
-<!-- Vendored reference. Source: github.com/janestreet/agent_skills, socratic-tutor/SKILL.md (fetched 2026-11-15, blob SHA 93bb7befeb73c41b4354175f9ef765547d4f3506). Kept verbatim as the method reference for socratic-practice.md; all credit to the original authors. -->
-
 ---
 name: "socratic-tutor"
 description: "Structured Socratic tutoring when the user explicitly asks to be taught, quizzed, or drilled to mastery on a topic: diagnostic placement, a skill map with levels 0-5, spaced review, and a final assessment. Trigger phrases: 'teach me', 'tutor me', 'quiz me', 'drill me', 'help me master'. Not for one-off 'explain X' or 'what is X' questions."

@@ -1,0 +1,21 @@
+{
+  "name": "viva",
+  "version": "0.2.0",
+  "description": "Learn Socratically, certify by viva. A general-purpose learning system for any topic: Socratic tutoring for practice, and a held-out oral exam (the Landau exam) for assessment. Three commands: learn, exam, status.",
+  "author": {
+    "name": "Jinyuan Lu"
+  },
+  "homepage": "https://github.com/jinyuanlu/socratic-viva",
+  "repository": "https://github.com/jinyuanlu/socratic-viva",
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "socratic",
+    "tutor",
+    "oral-exam",
+    "spaced-review",
+    "interview",
+    "language-learning"
+  ],
+  "skills": "./skills/"
+}

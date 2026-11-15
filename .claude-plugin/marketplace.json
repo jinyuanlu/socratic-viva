@@ -1,1 +1,16 @@
-{"name":"socratic-viva","owner":{"name":"Jinyuan Lu"},"plugins":[{"description":"Learn Socratically, certify by viva: Socratic tutoring plus a Landau-school oral exam. Commands: /viva:learn, /viva:exam, /viva:status.","name":"socratic-viva","source":"./plugins/socratic-viva"}]}
+{
+  "name": "socratic-viva",
+  "owner": {
+    "name": "Jinyuan Lu"
+  },
+  "metadata": {
+    "description": "Socratic Viva: learn Socratically, certify by viva."
+  },
+  "plugins": [
+    {
+      "name": "viva",
+      "source": "./plugins/viva",
+      "description": "Learn Socratically, certify by viva. A general-purpose learning system for any topic: Socratic tutoring for practice, and a held-out oral exam (the Landau exam) for assessment. Three commands: learn, exam, status."
+    }
+  ]
+}
