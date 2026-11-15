@@ -10,7 +10,7 @@
     {
       "name": "viva",
       "source": "./plugins/viva",
-      "description": "Learn Socratically, certify by viva. A general-purpose learning system for any topic: Socratic tutoring for practice, and a held-out oral exam (the Landau exam) for assessment. Three commands: learn, exam, status."
+      "description": "Learn Socratically, certify by viva. A general-purpose learning system for any topic: Socratic tutoring for practice, and a held-out oral exam (the Landau exam) for assessment. Four commands: learn, exam, status, topics."
     }
   ]
 }

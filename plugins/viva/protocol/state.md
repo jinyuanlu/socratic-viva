@@ -32,7 +32,8 @@ existing topic, "Photography basics", whose syllabus includes
    - **Same**: it equals a title or an `Also called` name, or it
      is plainly the same subject and purpose in other words or
      in another language ("photo basics"). Use that topic. Ask
-     nothing.
+     nothing. A goal, a level or a date in the text is context,
+     not material: it never turns Same into Extends.
    - **Area**: a known topic plus something inside its syllabus
      ("photography exposure"). Use that topic, with that area as
      the focus. Ask nothing.
@@ -69,6 +70,7 @@ the other topic. Exam mode adds it to the new charter only.
 ## Layout
 
     <root>/
+      format                     format number of this folder (see Compatibility)
       profile.md                 optional, learner-wide preferences
       journal                    log of renames and merges
       staging/                   a merge that is not finished
@@ -125,8 +127,43 @@ deletes a topic folder by hand.
 - `<root>/staging/` and `<root>/journal` belong to the topic
   tool.
 
-A study folder made by version 0.3 is valid as it stands. Nothing
-has to be converted.
+## Compatibility
+
+A study folder holds months of a learner's work. Every version of
+the plugin must go on using a folder written by any earlier
+version.
+
+- **Additive only.** A version may add a file, a section or a
+  line. It never renames or removes one, and never changes what
+  an existing one means.
+- **Missing means empty.** A file, section or line that an older
+  version did not write is read as empty or as its default. Never
+  refuse to work because one is absent.
+- **Records are never reshaped.** A closed or abandoned exam
+  keeps the layout it was written in. Do not convert it.
+- **Checks report, they do not block.** If the topic tool finds a
+  fault in older data, the topics command reports it. Learning,
+  exams and status go on as well as they can.
+- **Format number.** `<root>/format` holds one number. This
+  version writes `1` when it creates a study folder, and a folder
+  without the file is format 1. If the number is higher, a newer
+  version wrote the folder: read it, write nothing, and tell the
+  learner to update the plugin.
+
+What an older folder may look like, and how to treat it:
+
+| Older shape | Treat as |
+|---|---|
+| Exam record with no answer key | Valid. Debrief from its `## Debrief notes` |
+| Exam record with `## Defence notes`, and no `## Probe review` | Valid. Read the notes as the defence |
+| `learning.md` with no `Diagnostic:` line | `Diagnostic: done` |
+| Skill-map row names shortened, or without numbers | Match rows to areas by order. Write the full names the next time the file is saved |
+| No `asked.md` | Start one at the next question. An exam may repeat practice from before it existed |
+| Charter with no `Also called` line; profile with no `## About the learner` | Empty |
+
+Real study folders written by earlier versions are kept in the
+repository under `tests/fixtures/`, and every version is tested
+against them.
 
 ## Dates
 

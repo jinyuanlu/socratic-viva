@@ -175,6 +175,15 @@ In other tools, and for anything the hook does not cover, these
 are rules that a language model follows. They are not locks. See
 the limits below.
 
+## Your data across versions
+
+A new version of the plugin keeps using the study folder an older
+version wrote. Versions only add to the format; they never rename
+or remove what is there, and old exam records are never
+converted. Study folders written by earlier versions are kept in
+this repository as test data, and each version is tested against
+them.
+
 ## Limits
 
 - **"Certified" is a personal record.** It is not a diploma, a
