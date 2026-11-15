@@ -49,6 +49,20 @@ def link_errors(md):
     return [f"{rel(md)}: broken link {t}" for t in local if not (md.parent / t).exists()]
 
 
+def agent_errors(agent_md):
+    match = FRONTMATTER.match(agent_md.read_text(encoding="utf-8"))
+    fields = dict(re.findall(r"^([\w-]+):\s*(.*)$", match.group(1), re.M)) if match else {}
+    return ([] if fields.get("name") == agent_md.stem else [f"{rel(agent_md)}: name is not the file name"]) + (
+        [] if fields.get("description") else [f"{rel(agent_md)}: no description"])
+
+
+def hook_errors():
+    hooks = json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8"))["hooks"]
+    commands = [h["command"] for entries in hooks.values() for e in entries for h in e["hooks"]]
+    scripts = [m for c in commands for m in re.findall(r"\$\{CLAUDE_PLUGIN_ROOT\}/([\w./-]+)", c)]
+    return [f"hooks.json: missing script {s}" for s in scripts if not (PLUGIN / s).is_file()]
+
+
 def vendor_errors():
     actual = git_blob_sha(VENDORED)
     return [] if actual == VENDORED_BLOB else [f"{rel(VENDORED)}: blob {actual}, expected {VENDORED_BLOB}"]
@@ -57,7 +71,9 @@ def vendor_errors():
 def main():
     skills = sorted(PLUGIN.glob("skills/*/SKILL.md"))
     docs = sorted(p for p in ROOT.rglob("*.md") if ".git" not in p.parts and p != VENDORED)
-    errors = (manifest_errors() + vendor_errors()
+    agents = sorted(PLUGIN.glob("agents/*.md"))
+    errors = (manifest_errors() + vendor_errors() + hook_errors()
+              + [e for a in agents for e in agent_errors(a)]
               + ([] if skills else ["no skills found"])
               + [e for s in skills for e in skill_errors(s)]
               + [e for d in docs for e in link_errors(d)])

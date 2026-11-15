@@ -115,7 +115,7 @@ delete them.
       topics/<topic>/
         charter.md             goal, standard, syllabus
         learning.md            practice record
-        exams/001-<date>.md    one file per exam
+        exams/001-<date>.md    one record per exam, with its answer key
 
 Your tool may ask for permission to read the plugin's files and to
 read and write this folder. That is expected.
@@ -128,17 +128,33 @@ folder out of public repositories.
 ## How the separation is kept
 
 - The practice record and the exam record are different files with
-  different writers. The tutor cannot write an exam file. The
-  examiner is instructed never to open the practice record.
-- A ticket is written to disk before you see it, and a closed exam
-  file is never edited.
+  different writers.
+- An exam is the work of three roles. A **ticket writer** writes
+  the ticket and an answer key before you see anything. A
+  **conductor** runs the defence without seeing the key. A
+  **grader** that took no part in the defence writes the verdict
+  from the transcript and the key, and first checks the
+  conductor's questions for hints.
+- In Claude Code the ticket writer and the grader are separate
+  agents. Each starts with an empty context and knows nothing of
+  your tutoring or of the conversation.
+- The answer key is fixed before the defence. The transcript is
+  written down word for word. A closed exam is never edited.
 - The examiner refuses to start in a conversation that already
   contains tutoring on the topic, and asks for a new one.
-- The examiner picks syllabus areas by how recently they were
-  examined, not by how well you are doing.
+- Syllabus areas are picked by how recently they were examined,
+  not by how well you are doing.
 
-These are rules that a language model follows. They are not locks.
-See the limits below.
+In Claude Code a small hook shipped with the plugin enforces the
+file rules: the practice record cannot be opened while an exam is
+open and never by the examining agents, the answer key cannot be
+opened by the conductor, and a closed exam cannot be written. It
+is a shell script and needs `sh` (on Windows, Git for Windows).
+It acts only on files inside a study folder.
+
+In other tools, and for anything the hook does not cover, these
+are rules that a language model follows. They are not locks. See
+the limits below.
 
 ## Limits
 
@@ -168,6 +184,11 @@ See the limits below.
   [status](plugins/viva/skills/status/SKILL.md)
 - [plugins/viva/protocol/examiner.md](plugins/viva/protocol/examiner.md):
   the examiner protocol
+- [plugins/viva/agents/](plugins/viva/agents/ticket-writer.md): the
+  [ticket writer](plugins/viva/agents/ticket-writer.md) and the
+  [grader](plugins/viva/agents/grader.md)
+- [plugins/viva/hooks/guard.sh](plugins/viva/hooks/guard.sh): the
+  hook that enforces the file rules
 - [plugins/viva/protocol/domains.md](plugins/viva/protocol/domains.md):
   how the method applies to each kind of topic
 - [plugins/viva/protocol/state.md](plugins/viva/protocol/state.md):

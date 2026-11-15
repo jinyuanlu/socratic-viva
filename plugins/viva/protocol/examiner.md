@@ -15,10 +15,29 @@ historical examination.
 
 ## Independence
 
-This protocol must stay independent of the tutoring. The examiner
-does not read the learning state, does not use any knowledge of
-what was practised, and does not coach. See
-[state.md](state.md) for which files the examiner may read.
+This protocol must stay independent of the tutoring. Nobody on
+the examining side reads the learning state, uses any knowledge
+of what was practised, or coaches. See [state.md](state.md) for
+which files each role may read.
+
+## Roles
+
+An exam is the work of three roles.
+
+- The **ticket writer** draws the areas, writes the ticket, and
+  writes the answer key, before the learner sees anything.
+- The **conductor** presents the ticket and runs the defence. The
+  conductor does not see the answer key and does not grade.
+- The **grader** reads the record and the answer key after the
+  defence, and writes the verdict. The grader did not take part
+  in the defence.
+
+Where the tool can start a separate agent with a fresh context,
+the ticket writer and the grader are such agents, and the
+conductor is the conversation with the learner. Where it cannot,
+one examiner plays the three roles in this order, writes the
+answer key before presenting the ticket, and does not look at it
+again until the defence is over.
 
 ## The ticket
 
@@ -64,9 +83,22 @@ what each part looks like for the topic's kind.
 - If a part contains code, numbers, or a factual claim, check it
   with a tool where one is available. Do this in a temporary
   folder and delete it afterwards.
-- Write your own expected answer for each part before the exam
-  starts, privately. If a part has more than one defensible
-  answer, either fix the wording or accept all of them.
+
+### The answer key
+
+Before the learner sees the ticket, the ticket writer writes the
+expected answer for each part into the answer key, a separate
+file beside the exam record:
+
+- what a correct first-pass answer must contain;
+- the reasoning the Foundations part should reach, and where the
+  charter's `Standard` places the limit of what is required;
+- for a part with more than one defensible answer, all of them.
+  If that cannot be done, the wording of the part is wrong: fix
+  it.
+
+The key is fixed before the defence, so that the verdict cannot
+bend towards what the learner happened to say.
 
 ## Conduct
 
@@ -91,8 +123,11 @@ what each part looks like for the topic's kind.
    - the reasoning breaks: a contradiction, an appeal to
      authority, a term used without content.
 
-   When a part stops, write its defence notes to the exam file
-   before moving to the next part.
+   When a part stops, append its exchange to `## Defence` in the
+   exam record before moving to the next part: the learner's
+   first-pass answer for that part, then every question and
+   answer, **word for word**, and one line saying how the part
+   stopped. The grader works from this text alone.
 
 Ask one question per message and wait for the answer.
 
@@ -160,21 +195,25 @@ examiner's help**:
   second looks are not available in the situations the exam
   stands for.
 - A point the learner reaches only after a probe that broke the
-  rules above does not count at all. Note the faulty probe in the
-  defence notes.
+  rules above does not count at all. The probe review lists it.
 
 ### Stopping early
 
 The learner may stop at any time by saying so. The exam is then
 recorded as `abandoned`: parts already defended keep their
 verdict, the others are recorded as "Not defended", and the exam
-certifies nothing. Write the debrief notes all the same, for every
-part of the ticket, since the ticket has been seen and will not be
-used again.
+certifies nothing. The debrief notes are written all the same,
+for every part of the ticket, since the ticket has been seen and
+will not be used again.
 
 ## Verdict
 
-For each part, exactly one of:
+The grader first reviews the probes. Each question in the defence
+is checked against "No ladder", and the ones that broke it are
+listed in `## Probe review`. This is a check on the examiner, not
+on the learner.
+
+Then, for each part, exactly one of:
 
 - **Holds**: correct in the first pass and defended cleanly under
   probing.
@@ -201,23 +240,22 @@ The verdict describes the defence. It makes no statement about
 the person: not their honesty, effort, promise, or conduct. It
 names each edge but does not explain what lies beyond it.
 
-Defence notes record what was said and asked, nothing else. Do
-not write that the learner "did not know" something that was
-never asked, or that something was "unprompted" when it followed
-a probe.
+The verdict rests on the transcript. Do not write that the
+learner "did not know" something that was never asked, or that
+something was "unprompted" when it followed a probe.
 
-After the verdict is written, the examiner writes the debrief
-notes into the exam file: a model answer for every part that did
-not hold, and the agenda this gives the next learning session. If
-a part had more than one acceptable answer, the model answer
-gives all of them. The notes are for the tutor. The examiner does
-not teach from them.
+After the verdict, the grader writes the debrief notes into the
+exam record: a model answer for every part that did not hold,
+taken from the answer key, and the agenda this gives the next
+learning session. If a part had more than one acceptable answer,
+the model answer gives all of them. The notes are for the tutor.
+Nobody on the examining side teaches from them.
 
 ## Strictness
 
 - A vague answer is a failed answer. Terms must carry content.
 - A clean "I do not know" at a real edge is better than a bluff
-  that collapses two questions later. The defence notes say which
+  that collapses two questions later. The transcript shows which
   one happened.
 - No flattery and no consolation grades.
 - Strict about the answer, never about the person. No sarcasm, no

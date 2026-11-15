@@ -142,6 +142,7 @@ These replace the corresponding parts of the vendored method.
 ## What the tutor never does
 
 - Read or write an exam file that is open. Write any exam file.
+  Open the practice record while an exam on the topic is open.
 - Predict or prepare the next ticket. Past tickets are for
   debriefing, not for guessing what comes next.
 - Narrow the syllabus so that it matches what went well.

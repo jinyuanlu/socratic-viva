@@ -42,7 +42,8 @@ once, so that they can use the same name later.
         charter.md               what the topic is: goal, standard, syllabus
         learning.md              practice state
         exams/
-          001-2026-01-31.md      one file per exam, numbered in order
+          001-2026-01-31.md      one record per exam, numbered in order
+          001-2026-01-31.key.md  its answer key
 
 ## Ownership
 
@@ -53,12 +54,19 @@ the exam independent of the tutoring; follow it exactly.
 |---|---|---|---|
 | `profile.md` | read; write when the learner asks | read | read |
 | `charter.md` | create; amend only with the learner's agreement | read; create if missing | read |
-| `learning.md` | read and write | **never read, never write** | read |
-| `exams/*.md` with `Status: open` | see that it exists; read and write nothing | read and write | report that it exists |
-| `exams/*.md`, closed or abandoned | read | read; **never edit** | read |
+| `learning.md` | read and write; **sealed while an exam is open** | **never read, never write** | read; sealed while an exam is open |
+| exam record, `Status: open` | see that it exists; read and write nothing | read and write | report that it exists |
+| exam record, closed or abandoned | read | read; **never edit** | read |
+| answer key, exam open | never | ticket writer writes it; grader reads it; the conductor never opens it | never |
+| answer key, exam closed or abandoned | read | read; **never edit** | not needed |
 
-An exam is *open* when a file in `exams/` has `Status: open`. At
-most one exam per topic is open at a time.
+An exam is *open* when a record in `exams/` has `Status: open`.
+At most one exam per topic is open at a time.
+
+In Claude Code a hook shipped with the plugin enforces the rules
+in bold for the Read, Write, Edit and Grep tools, and refuses
+shell commands that name a sealed file. In other tools these
+rules rest on the instructions alone.
 
 ## Dates
 
@@ -162,9 +170,12 @@ An exam is *undebriefed* when its status is `closed` or
     2. Foundations (<area>): <question>
     3. Transfer (<area>): <question>
 
-    ## Defence notes
-    <per part, written when that part stops: what the learner claimed in
-    the first pass, what was corrected under probing, where it stopped>
+    ## Defence
+    <per part, appended when that part stops: the first-pass answer,
+    then every question and answer, word for word, and how it stopped>
+
+    ## Probe review
+    <every examiner question marked allowed or not allowed>
 
     ## Verdict
     - Part 1: Holds | Edge found at <point> | Fails at fundamentals: <missing foundation>
@@ -179,3 +190,17 @@ An exam is *undebriefed* when its status is `closed` or
 The ticket is written to the file, with `Status: open`, before the
 learner sees it. Once the status is `closed` or `abandoned` the
 file is a record and is not edited again by anyone.
+
+## `exams/NNN-YYYY-MM-DD.key.md`
+
+    # Answer key: exam NNN, <topic>
+
+    ## Part 1
+    - Must contain: <what a correct first-pass answer includes>
+    - Limit of the standard: <how deep the charter's standard goes here>
+    - Also acceptable: <other defensible answers, or none>
+
+    ## Part 2
+    ...
+
+Written before the learner sees the ticket, and never changed.

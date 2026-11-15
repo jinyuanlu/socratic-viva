@@ -46,7 +46,9 @@ exam, word for word.
 Then, if they apply:
 
 - an exam is open. Report only that it exists. Do not show its
-  ticket;
+  ticket, and do not open `learning.md` for this topic: the
+  practice record is sealed until the exam ends, so the Practised
+  block says only that;
 - an exam is closed but not yet debriefed;
 - an exam was abandoned. It certifies nothing.
 
