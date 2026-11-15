@@ -47,13 +47,14 @@ plugin **viva**.
 
 | Command | What it does |
 |---|---|
-| `/viva:learn [topic] [area]` | A tutoring session. A new topic starts with a short interview about your goal, then a diagnostic. A known topic continues: exam debrief first, then reviews that are due, then your weakest areas. |
+| `/viva:learn [topic] [area]` | A tutoring session. A new topic starts with a proposed study plan that you correct in one reply, then a diagnostic. A known topic continues: exam debrief first, then reviews that are due, then your weakest areas. |
 | `/viva:exam [topic] [area]` | Sit the exam. Run it in a new conversation. |
 | `/viva:status [topic]` | Show what is practised and what is certified, as two separate lists. Changes nothing. |
+| `/viva:topics` | List your topics. Also `rename <topic> to <name>` and `merge <source> into <target>`. |
 
 The command names above are the Claude Code form. In other tools,
-call the plugin's `learn`, `exam` and `status` skills in the way
-that tool provides.
+call the plugin's `learn`, `exam`, `status` and `topics` skills in
+the way that tool provides.
 
 Examples:
 
@@ -65,6 +66,13 @@ Examples:
 
 Write in any language. The tutor answers in the language you use,
 unless you set another one.
+
+You do not need to remember the exact name of a topic. Each reply
+begins with the name of the topic it found, so you can see a
+wrong match at once. `/viva:topics` lists your topics, renames
+one, and merges two that turned out to be the same subject. A
+merge keeps every record. Exams from the merged-in topic are kept
+as history and certify nothing in the merged topic.
 
 ### What each kind of topic looks like
 
@@ -112,11 +120,17 @@ delete them.
 
     ~/.viva/
       profile.md               your preferences (optional)
+      journal                  log of renames and merges
+      archive/<date-time>/     the original folders replaced by a merge
       topics/<topic>/
         charter.md             goal, standard, syllabus
         learning.md            practice record
         asked.md               situations already used in practice
         exams/001-<date>.md    one record per exam, with its answer key
+        exams/from-<topic>/    exams of a topic merged into this one
+
+Nothing is deleted by the plugin. To delete a topic completely,
+remove its folder from `topics/` and also from `archive/`.
 
 Your tool may ask for permission to read the plugin's files and to
 read and write this folder. That is expected.
@@ -183,10 +197,11 @@ the limits below.
 
 ## Repository layout
 
-- [plugins/viva/skills/](plugins/viva/skills/): the three commands:
+- [plugins/viva/skills/](plugins/viva/skills/): the four commands:
   [learn](plugins/viva/skills/learn/SKILL.md),
   [exam](plugins/viva/skills/exam/SKILL.md),
-  [status](plugins/viva/skills/status/SKILL.md)
+  [status](plugins/viva/skills/status/SKILL.md),
+  [topics](plugins/viva/skills/topics/SKILL.md)
 - [plugins/viva/protocol/examiner.md](plugins/viva/protocol/examiner.md):
   the examiner protocol
 - [plugins/viva/agents/](plugins/viva/agents/ticket-writer.md): the
@@ -194,6 +209,9 @@ the limits below.
   [grader](plugins/viva/agents/grader.md)
 - [plugins/viva/hooks/guard.sh](plugins/viva/hooks/guard.sh): the
   hook that enforces the file rules
+- [plugins/viva/tools/topic.sh](plugins/viva/tools/topic.sh): the
+  script that renames and merges topic folders. It also needs
+  `sh`.
 - [plugins/viva/protocol/domains.md](plugins/viva/protocol/domains.md):
   how the method applies to each kind of topic
 - [plugins/viva/protocol/state.md](plugins/viva/protocol/state.md):

@@ -30,8 +30,10 @@ every file in the folder.
 
 ## Before the exam
 
-1. **Find the topic**, as state.md describes. No topic given: list
-   the topics in the study folder and ask which one.
+1. **Find the topic** by the procedure "Finding a topic" in
+   state.md, and open your reply with the line it requires. No
+   topic given: list the topics in the study folder and ask
+   which one.
 2. **Require a clean conversation.** If this conversation already
    contains tutoring on this topic, or shows its learning state
    (for example a status report), do not start. Explain that the
@@ -42,10 +44,18 @@ every file in the folder.
    graded as stopped early (see "Grading"), and go on to a new
    exam.
 4. **No charter yet.** An exam may be sat without any tutoring.
-   Ask for the goal, the standard, and the conditions, one
-   question per message. Propose a syllabus and let the learner
-   change it. Show the charter, and save `charter.md` exactly as
-   shown. Teach nothing while doing this.
+   Do not interview the learner. Read `profile.md`, if it
+   exists. From the learner's text and the profile, draft the
+   whole charter in one message: goal, deadline, kind, standard,
+   working language, exam conditions, and a syllabus of 4 to 10
+   areas. Write "(assumed)" after everything the learner did not
+   state, and write every date with its year. Ask the learner to
+   correct anything in one reply. Ask a question only about a
+   fact that cannot reasonably be assumed and that would change
+   the syllabus or the standard: at most two, in the same
+   message as the draft. Save `charter.md` exactly as agreed,
+   without the "(assumed)" marks. Teach nothing while doing
+   this.
 5. Read `charter.md`. Use the working language from the profile
    or charter; if neither sets one, use the language the learner
    writes in.

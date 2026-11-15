@@ -13,31 +13,66 @@ plugin's own folder.
 
 ## Finding a topic
 
-The learner's text may be a name ("operating systems") or a
-sentence ("Spanish, I want to reach B1 by June"). Proceed in this
-order:
+Learn and exam find the topic in this way. The learner's text may
+be a name or a sentence with context. The examples assume one
+existing topic, "Photography basics", whose syllabus includes
+"Exposure: aperture, shutter, ISO" and "Composition".
 
-1. List the existing topic folders and the title line of each
-   `charter.md`. If the learner's text clearly refers to one of
-   them, in any wording or language, use it.
-2. If it is close to one but not clearly the same, ask.
-3. Otherwise it is a new topic. Its name is the shortest phrase
-   that identifies the subject, normally one to four words, without
-   the goal, the level, or the date: "Spanish", "TCP congestion
-   control", "senior backend interview". The rest of the text is
-   context for the charter.
+1. **Check for unfinished work.** If `<root>/staging` exists, or
+   the last line of `<root>/journal` says neither `done` nor
+   `aborted`, a rename or merge was not finished. Say so, name
+   `/viva:topics` as the command that finishes it, and stop.
+2. **Search once.** Make one Grep call: path `<root>/topics`,
+   glob `charter.md`, pattern
+   `^(# |- Also called:|- Goal:|- Standard:|[0-9]+\. )`.
+   It returns the title, other names, goal, standard and syllabus
+   of every topic. Do not search `<root>` itself, do not open
+   the charters one by one, and do not read a practice record.
+3. **Classify** the text as exactly one of these four.
+   - **Same**: it equals a title or an `Also called` name, or it
+     is plainly the same subject and purpose in other words or
+     in another language ("photo basics"). Use that topic. Ask
+     nothing.
+   - **Area**: a known topic plus something inside its syllabus
+     ("photography exposure"). Use that topic, with that area as
+     the focus. Ask nothing.
+   - **Extends**: the subject of a known topic plus material
+     that is not in its syllabus ("photography and darkroom
+     printing"). Ask once, with three choices: continue the
+     topic as it is; add the material as new areas, which is a
+     syllabus change; or make a separate topic. Recommend the
+     separate topic when the goal or the standard would differ.
+     Exam mode offers the first and the third only.
+   - **New**: everything else ("Portuguese"). A different
+     subject in the same field is also New ("videography"). Ask
+     nothing.
+4. **Name the topic first.** Open the reply with one line that
+   names the topic you resolved, or the new topic, for example
+   `Topic: Photography basics.` A wrong match is then visible at
+   once.
+
+The name of a new topic is the shortest phrase that identifies
+the subject, normally one to four words, without the goal, the
+level, or the date. The rest of the text is context for the
+charter.
 
 The folder name (slug) is that name in lower case, in Unicode NFC
 form, spaces replaced by `-`, keeping letters and digits of any
 script and removing everything else. Examples: `Operating
 Systems` → `operating-systems`, `日本語` → `日本語`, `Japonés` →
-`japonés`. When a topic is created, tell the learner its name
-once, so that they can use the same name later.
+`japonés`.
+
+When a separate topic is made out of an Extends choice, add one
+line under `## Out of scope` in each of the two charters, naming
+the other topic. Exam mode adds it to the new charter only.
 
 ## Layout
 
     <root>/
       profile.md                 optional, learner-wide preferences
+      journal                    log of renames and merges
+      staging/                   a merge that is not finished
+      archive/<stamp>/           what a merge replaced
       topics/<slug>/
         charter.md               what the topic is: goal, standard, syllabus
         learning.md              practice state
@@ -45,22 +80,25 @@ once, so that they can use the same name later.
         exams/
           001-2026-01-31.md      one record per exam, numbered in order
           001-2026-01-31.key.md  its answer key
+          from-<source>/         exams of a topic merged into this one
 
 ## Ownership
 
 Each file has one writer. This table is the mechanism that keeps
 the exam independent of the tutoring; follow it exactly.
 
-| File | Learn mode | Exam mode | Status |
-|---|---|---|---|
-| `profile.md` | read; write when the learner asks | read | read |
-| `charter.md` | create; amend only with the learner's agreement | read; create if missing | read |
-| `learning.md` | read and write; **sealed while an exam is open** | **never read, never write** | read; sealed while an exam is open |
-| `asked.md` | append only | the ticket writer reads it, to avoid what is on it | not needed |
-| exam record, `Status: open` | see that it exists; read and write nothing | read and write | report that it exists |
-| exam record, closed or abandoned | read | read; **never edit** | read |
-| answer key, exam open | never | ticket writer writes it; grader reads it; the conductor never opens it | never |
-| answer key, exam closed or abandoned | read | read; **never edit** | not needed |
+| File | Learn mode | Exam mode | Status | Topics |
+|---|---|---|---|---|
+| `profile.md` | read; write when the learner asks or agrees | read | read | read |
+| `charter.md` | create; amend only with the learner's agreement | read; create if missing | read | read; write only the staged copy of a merge |
+| `learning.md` | read and write; **sealed while an exam is open** | **never read, never write** | read; sealed while an exam is open | read; write only the staged copy of a merge; sealed while an exam is open |
+| `asked.md` | append only | the ticket writer reads it, to avoid what is on it | not needed | never; the topic tool appends to it in a merge |
+| exam record, `Status: open` | see that it exists; read and write nothing | read and write | report that it exists | see that it exists; rename and merge nothing |
+| exam record, closed or abandoned | read | read; **never edit** | read | read; **never edit** |
+| answer key, exam open | never | ticket writer writes it; grader reads it; the conductor never opens it | never | never |
+| answer key, exam closed or abandoned | read | read; **never edit** | not needed | never |
+| `exams/from-*/` | read | the ticket writer reads the tickets; **never edit** | read | **never edit** |
+| `journal`, `staging/`, `archive/` | never write | never write | not needed | only through the topic tool, except the two staged files above |
 
 An exam is *open* when a record in `exams/` has `Status: open`.
 At most one exam per topic is open at a time.
@@ -69,6 +107,26 @@ In Claude Code a hook shipped with the plugin enforces the rules
 in bold for the Read, Write, Edit and Grep tools, and refuses
 shell commands that name a sealed file. In other tools these
 rules rest on the instructions alone.
+
+## Renames and merges
+
+Only the topics command renames or merges a topic, and only with
+the topic tool shipped with the plugin. No mode moves, copies or
+deletes a topic folder by hand.
+
+- `exams/from-<source>/` holds the exam records and answer keys
+  of a topic that was merged into this one, unchanged, and
+  `source-charter.md`, the charter they were written and graded
+  against. Read them against that charter. They are history
+  only: their verdicts certify nothing in this topic.
+- `<root>/archive/<stamp>/topics/` holds the original folders
+  that a merge replaced. No skill reads it. The learner may
+  delete it.
+- `<root>/staging/` and `<root>/journal` belong to the topic
+  tool.
+
+A study folder made by version 0.3 is valid as it stands. Nothing
+has to be converted.
 
 ## Dates
 
@@ -82,8 +140,16 @@ environment. If it is not available, ask the learner. Never guess.
     - Display: bars | plain      (plain = no bar characters, for screen readers)
     - Notes: <anything the learner wants every session to respect>
 
+    ## About the learner
+    - <role, level, background, usual goals: one fact per line>
+
 If there is no profile, use the language the learner writes in and
 `bars` display.
+
+`## About the learner` is optional. The tutor adds a fact to it,
+with the learner's agreement, the first time the fact comes up.
+Every later charter is drafted from it, so that the learner is
+not asked again.
 
 ## `charter.md`
 
@@ -91,6 +157,7 @@ The charter defines the topic and its question space. Both modes
 read it. It contains no record of what was practised.
 
     # <Topic name as the learner wrote it>
+    - Also called: <other names of this topic, separated by "; ">
     - Goal: <what the learner wants to be able to do>
     - Deadline: <YYYY-MM-DD, or none>
     - Kind: concepts | problem-solving | language | interview | mixed
@@ -116,6 +183,14 @@ read it. It contains no record of what was practised.
 A syllabus change moves the boundary of what the exam may ask.
 Make one only when the learner agrees, and log it under
 `## Changes`. Never remove an area because it is going badly.
+
+The `Also called` line is optional. It is written only by a
+rename, by a merge, or when the learner says in words that a name
+which did not match exactly means this topic. Do not ask a
+question in order to get that answer. Learn mode writes the line
+then; exam mode never writes the charter of an existing topic.
+No name on it may equal the title or an `Also called` name of
+another topic.
 
 ## `learning.md`
 

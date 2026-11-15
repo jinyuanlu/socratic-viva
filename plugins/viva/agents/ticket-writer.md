@@ -22,8 +22,9 @@ Then:
 
 1. Read `charter.md` in the topic folder, `asked.md` if it
    exists, and the exam records already in its `exams/` folder
-   (the files that do not end in `.key.md`). Read nothing else in
-   the topic folder. Never open `learning.md`.
+   and in any `exams/from-*/` folder (the files that do not end
+   in `.key.md`). Read nothing else in the topic folder. Never
+   open `learning.md`.
 2. Draw the areas. For each part follow "Staying off the obvious"
    in full, candidate list and random choice included, then write
    the part as the protocol says.
@@ -35,6 +36,11 @@ Then:
 5. Write the exam record to `exams/NNN-YYYY-MM-DD.md`, with
    `Status: open`, the conditions from the charter, and the
    ticket. Leave the other sections empty.
+
+Records in `exams/from-*/` came from another topic in a merge.
+Their tickets are situations to avoid, like past tickets. Do not
+count them when you find the areas examined least recently, and
+do not count them for `NNN`.
 
 `NNN` is the next number after the existing records, starting at
 `001`. Write in the working language of the charter.

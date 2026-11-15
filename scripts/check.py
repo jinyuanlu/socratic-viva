@@ -63,6 +63,11 @@ def hook_errors():
     return [f"hooks.json: missing script {s}" for s in scripts if not (PLUGIN / s).is_file()]
 
 
+def tool_errors(skill_md):
+    scripts = re.findall(r"\.\./\.\./(tools/[\w./-]+\.sh)", skill_md.read_text(encoding="utf-8"))
+    return [f"{rel(skill_md)}: missing script {s}" for s in scripts if not (PLUGIN / s).is_file()]
+
+
 def vendor_errors():
     actual = git_blob_sha(VENDORED)
     return [] if actual == VENDORED_BLOB else [f"{rel(VENDORED)}: blob {actual}, expected {VENDORED_BLOB}"]
@@ -75,7 +80,7 @@ def main():
     errors = (manifest_errors() + vendor_errors() + hook_errors()
               + [e for a in agents for e in agent_errors(a)]
               + ([] if skills else ["no skills found"])
-              + [e for s in skills for e in skill_errors(s)]
+              + [e for s in skills for e in skill_errors(s) + tool_errors(s)]
               + [e for d in docs for e in link_errors(d)])
     print("\n".join(errors) if errors else f"ok: {len(skills)} skills, {len(docs)} documents")
     return 1 if errors else 0

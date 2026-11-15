@@ -29,14 +29,15 @@ If the intent is unclear, ask one short question first.
 
 ## Start of a session
 
-1. **Find the topic**, as state.md describes. No topic given: list
-   the topics in the study folder and ask which one.
+1. **Find the topic** by the procedure "Finding a topic" in
+   state.md, and open your reply with the line it requires. No
+   topic given: list the topics in the study folder and ask
+   which one.
 2. **Check for an open exam.** If the topic has an exam file with
    `Status: open`, do not teach and do not read that file. Tell
    the learner an exam is open and that the exam command will
    finish or close it. Stop.
-3. **No charter**: write it together with the learner (see
-   "Writing the charter").
+3. **No charter**: propose one (see "Writing the charter").
 4. **Debrief first.** Read `charter.md`, and `learning.md` if it
    exists. If an exam that is closed or abandoned is not listed
    under `## Debriefed exams`, start with it (see "Debrief").
@@ -53,18 +54,31 @@ If the intent is unclear, ask one short question first.
 
 ## Writing the charter
 
-- Use what the learner already said with the command. Do not ask
-  for it again.
-- Ask for what is missing, one question per message: the goal,
-  any deadline, and the standard they want to reach. Give a date
-  its year explicitly and let the learner confirm it.
-- For an interview topic also ask for the role and level, the
-  interview formats expected, and anything known about how this
-  employer or institution runs interviews.
-- Propose the kind and a syllabus of 4 to 10 areas. Let the
-  learner change them.
-- Show the complete charter and ask for agreement. Save exactly
-  what was shown. If you want to add something, show it first.
+Propose a complete charter first. Do not interview the learner.
+
+1. Read `profile.md`, if it exists.
+2. From the learner's text and the profile, draft the whole
+   charter in one message: goal, deadline, kind, standard,
+   working language, exam conditions, and a syllabus of 4 to 10
+   areas. Write "(assumed)" after everything the learner did not
+   state. Write every date with its year. Ask the learner to
+   correct anything in one reply.
+3. Ask a question only about a fact that cannot reasonably be
+   assumed and that would change the syllabus or the standard.
+   Ask at most two, in the same message as the draft. For an
+   interview topic the role and the level are such facts when
+   neither the text nor the profile gives them. Assume the
+   interview formats and the employer's conventions, and mark
+   them.
+4. If the learner's text gives a fact for `## About the learner`
+   that the profile does not have, say in that same message that
+   you will note it. Write it to the profile unless the learner
+   objects.
+5. Save exactly what the learner agreed to, without the
+   "(assumed)" marks. If the learner changed much, show the
+   changed lines, not the whole charter again.
+6. Confirm the saving in one line and start the diagnostic in
+   the same message.
 
 ## Debrief
 

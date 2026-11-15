@@ -36,7 +36,8 @@ Show two blocks and keep them apart.
 full area names, the areas due for review, and the open
 misconceptions.
 
-**Certified** (from closed exam files): for each syllabus area,
+**Certified** (from the closed exam files directly in `exams/`,
+not from `exams/from-*/`): for each syllabus area,
 under its full name, the most recent verdict that covered it, with
 the exam number and date; or "not examined". An area counts as
 certified only if that verdict is "Holds". Abandoned exams do not
@@ -51,6 +52,12 @@ Then, if they apply:
   block says only that;
 - an exam is closed but not yet debriefed;
 - an exam was abandoned. It certifies nothing.
+
+Exams merged in from another topic (`exams/from-*/`) are listed
+last, one line each: the number, the date, and "history, from
+<the title in that folder's `source-charter.md`>". They never
+appear in the Certified block and never count as certified, in
+this report or in the overview.
 
 A topic may have a charter and exams but no `learning.md`. Then
 the Practised block says that no tutoring has taken place yet.
