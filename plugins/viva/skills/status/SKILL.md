@@ -20,11 +20,13 @@ characters.
 
 ## No topic given
 
-One line per topic: name, goal and deadline (with the days left),
-number of areas at or above the target level, number of areas
-certified, reviews due today, and a flag if an exam is open or
-undebriefed. If the study folder is empty, say so and name the
-learn command as the way to begin.
+If the study folder is empty, say so and name the learn command as
+the way to begin. If it holds exactly one topic, give the report
+for that topic (next section). Otherwise give an overview and
+nothing more: exactly one line per topic, with the name, the
+deadline and days left, areas at or above the target level, areas
+certified, reviews due today, and a short note if an exam is
+open, undebriefed, or abandoned.
 
 ## One topic
 
@@ -34,8 +36,10 @@ Show two blocks and keep them apart.
 areas due for review, and the open misconceptions.
 
 **Certified** (from closed exam files): for each syllabus area,
-the most recent verdict that covered it, with the exam number and
-date; or "not examined". Then the overall line of the latest exam.
+under its full name, the most recent verdict that covered it, with
+the exam number and date; or "not examined". An area counts as
+certified only if that verdict is "Holds". Then the overall line
+of the latest exam, word for word.
 
 Then, if they apply:
 
@@ -44,8 +48,13 @@ Then, if they apply:
 - an exam is closed but not yet debriefed;
 - an exam was abandoned. It certifies nothing.
 
+A topic may have a charter and exams but no `learning.md`. Then
+the Practised block says that no tutoring has taken place yet.
+
 ## Rules
 
+- Read only the files of the study folder. Do not list or read
+  the working directory.
 - Never call a level mastery, and never merge the two blocks into
   one score. A level says "performed in practice". Only a verdict
   of "Holds" certifies, and only for the area and date it names.

@@ -10,12 +10,29 @@ plugin's own folder.
   if it is set, otherwise `~/.viva` (a folder named `.viva` in the
   user's home folder).
 - One folder per topic: `<root>/topics/<slug>/`.
-- Slug: the topic name in lower case, spaces replaced by `-`,
-  keeping letters and digits of any script and removing everything
-  else. Examples: `Operating Systems` → `operating-systems`,
-  `日本語 N3` → `日本語-n3`.
-- If the learner names a topic that is close to an existing folder,
-  ask which one they mean. Do not create a near-duplicate.
+
+## Finding a topic
+
+The learner's text may be a name ("operating systems") or a
+sentence ("Spanish, I want to reach B1 by June"). Proceed in this
+order:
+
+1. List the existing topic folders and the title line of each
+   `charter.md`. If the learner's text clearly refers to one of
+   them, in any wording or language, use it.
+2. If it is close to one but not clearly the same, ask.
+3. Otherwise it is a new topic. Its name is the shortest phrase
+   that identifies the subject, normally one to four words, without
+   the goal, the level, or the date: "Spanish", "TCP congestion
+   control", "senior backend interview". The rest of the text is
+   context for the charter.
+
+The folder name (slug) is that name in lower case, in Unicode NFC
+form, spaces replaced by `-`, keeping letters and digits of any
+script and removing everything else. Examples: `Operating
+Systems` → `operating-systems`, `日本語` → `日本語`, `Japonés` →
+`japonés`. When a topic is created, tell the learner its name
+once, so that they can use the same name later.
 
 ## Layout
 
@@ -111,9 +128,21 @@ Make one only when the learner agrees, and log it under
     ## Debriefed exams
     - 001
 
-The rows of the skill map are the syllabus areas of the charter,
-one row each. An exam is *undebriefed* when it is closed and its
-number is not listed under `## Debriefed exams`.
+Rules for this file:
+
+- The rows of the skill map are the syllabus areas of the charter,
+  one row each, with the same numbers and the same names, word
+  for word.
+- `Level` is always a number from 0 to 5. Leave `Last tested` and
+  `Next review` empty for an area that has not been worked on.
+- `## Misconceptions` holds specific wrong beliefs only ("thinks
+  X causes Y"). Something the learner does not know yet is not a
+  misconception; the level already shows it.
+- Add no other sections.
+
+An exam is *undebriefed* when its status is `closed` or
+`abandoned` and its number is not listed under
+`## Debriefed exams`.
 
 ## `exams/NNN-YYYY-MM-DD.md`
 
@@ -128,13 +157,14 @@ number is not listed under `## Debriefed exams`.
     3. Transfer (<area>): <question>
 
     ## Defence notes
-    <per part: what the learner claimed, where each line of probing stopped>
+    <per part, written when that part stops: what the learner claimed in
+    the first pass, what was corrected under probing, where it stopped>
 
     ## Verdict
     - Part 1: Holds | Edge found at <point> | Fails at fundamentals: <missing foundation>
     - Part 2: ...
     - Part 3: ...
-    - Overall: certifies <what>; does not certify <what>
+    - Overall: certifies <what the parts that hold show, or "nothing">; does not certify <the rest>
 
     ## Debrief notes
     <written after the verdict: a model answer for every part that
