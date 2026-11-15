@@ -115,6 +115,7 @@ delete them.
       topics/<topic>/
         charter.md             goal, standard, syllabus
         learning.md            practice record
+        asked.md               situations already used in practice
         exams/001-<date>.md    one record per exam, with its answer key
 
 Your tool may ask for permission to read the plugin's files and to
@@ -144,6 +145,10 @@ folder out of public repositories.
   contains tutoring on the topic, and asks for a new one.
 - Syllabus areas are picked by how recently they were examined,
   not by how well you are doing.
+- The tutor keeps a list of the situations it has used. The
+  ticket writer must avoid them, and must pick each question at
+  random from a wide set of candidates, so that an exam does not
+  repeat the practice by coincidence.
 
 In Claude Code a small hook shipped with the plugin enforces the
 file rules: the practice record cannot be opened while an exam is

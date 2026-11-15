@@ -20,11 +20,13 @@ Read first:
 
 Then:
 
-1. Read `charter.md` in the topic folder, and the exam records
-   already in its `exams/` folder (the files that do not end in
-   `.key.md`). Read nothing else in the topic folder. Never open
-   `learning.md`.
-2. Draw the areas and write the three parts as the protocol says.
+1. Read `charter.md` in the topic folder, `asked.md` if it
+   exists, and the exam records already in its `exams/` folder
+   (the files that do not end in `.key.md`). Read nothing else in
+   the topic folder. Never open `learning.md`.
+2. Draw the areas. For each part follow "Staying off the obvious"
+   in full, candidate list and random choice included, then write
+   the part as the protocol says.
 3. Check any code, numbers or factual claims in the ticket with a
    tool, in a temporary folder that you delete. Use the shell for
    this and for a random choice only. Reach the study folder with

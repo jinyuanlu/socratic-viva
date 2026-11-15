@@ -109,6 +109,11 @@ These replace the corresponding parts of the vendored method.
 - **Reviews are not announced.** Do not tell the learner which
   area comes back next or when.
 - **The skill map is shown with the full area names.**
+- **Log what you ask.** Each time you pose a question built on a
+  concrete situation, example, exercise or text, add its line to
+  `asked.md` before you send the message (format in state.md).
+  This is what lets the exam avoid what was practised. Record the
+  question only, never the answer.
 - **Diagnostic questions.** One task per question. A question
   must not name the concept it is testing for. After the
   diagnostic, show the map and the proposed starting point, then

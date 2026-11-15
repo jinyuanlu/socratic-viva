@@ -60,9 +60,9 @@ the answer key and the exam record, and returns the path of the
 record.
 
 *If your tool cannot start that agent*, do its work yourself as
-examiner.md describes: write the answer key, then the record with
-`Status: open`, and do not look at the key again until the
-defence is over.
+examiner.md describes, reading `asked.md` for the purpose stated
+there: write the answer key, then the record with `Status: open`,
+and do not look at the key again until the defence is over.
 
 Then read the exam record and conduct the exam.
 

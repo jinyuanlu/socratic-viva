@@ -84,6 +84,28 @@ what each part looks like for the topic's kind.
   with a tool where one is available. Do this in a temporary
   folder and delete it afterwards.
 
+### Staying off the obvious
+
+The tutor and the ticket writer know the same subject, so left
+alone they reach for the same well-worn situations, and the exam
+repeats the practice without anyone having copied anything. For
+each part, before writing it:
+
+1. List eight candidate situations, as different from each other
+   as you can make them: other settings, scales, actors, numbers,
+   and causes. The first ideas that come to mind are the ones
+   every textbook and every tutor also uses. The list must go
+   well beyond them.
+2. Strike every candidate that resembles a line of the topic's
+   `asked.md`, the list of situations already used in practice,
+   or a part of a past ticket. Resemblance means the same
+   situation or the same insight asked for, even with other
+   numbers or names.
+3. Choose one of the remaining candidates with a random tool.
+
+`asked.md` is read for this purpose alone. It says what was
+asked, never how the learner answered.
+
 ### The answer key
 
 Before the learner sees the ticket, the ticket writer writes the

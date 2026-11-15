@@ -41,6 +41,7 @@ once, so that they can use the same name later.
       topics/<slug>/
         charter.md               what the topic is: goal, standard, syllabus
         learning.md              practice state
+        asked.md                 situations already used in practice
         exams/
           001-2026-01-31.md      one record per exam, numbered in order
           001-2026-01-31.key.md  its answer key
@@ -55,6 +56,7 @@ the exam independent of the tutoring; follow it exactly.
 | `profile.md` | read; write when the learner asks | read | read |
 | `charter.md` | create; amend only with the learner's agreement | read; create if missing | read |
 | `learning.md` | read and write; **sealed while an exam is open** | **never read, never write** | read; sealed while an exam is open |
+| `asked.md` | append only | the ticket writer reads it, to avoid what is on it | not needed |
 | exam record, `Status: open` | see that it exists; read and write nothing | read and write | report that it exists |
 | exam record, closed or abandoned | read | read; **never edit** | read |
 | answer key, exam open | never | ticket writer writes it; grader reads it; the conductor never opens it | never |
@@ -157,6 +159,18 @@ Rules for this file:
 An exam is *undebriefed* when its status is `closed` or
 `abandoned` and its number is not listed under
 `## Debriefed exams`.
+
+## `asked.md`
+
+    # Asked: <topic>
+    - YYYY-MM-DD | area <n> | <the situation, with its key numbers> | <what was asked about it>
+
+One line for every question the tutor builds on a concrete
+situation, example, exercise or text: in the diagnostic, in
+teaching, in a review, in a debrief. It records the question
+only, never the answer or how it went. Lines are added, never
+changed or removed. The ticket writer reads this file so that an
+exam does not repeat a situation the learner has practised on.
 
 ## `exams/NNN-YYYY-MM-DD.md`
 
