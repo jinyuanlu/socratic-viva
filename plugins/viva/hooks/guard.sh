@@ -8,6 +8,8 @@
 #   2. An answer key (exams/*.key.md) is readable only by the ticket
 #      writer and the grader until its exam is closed or abandoned.
 #   3. A closed or abandoned exam, and its key, cannot be written.
+#   4. A copy of learning.md under <root>/archive or <root>/staging
+#      is sealed while any topic of that study folder has an open exam.
 #
 # Read, Write, Edit and Grep are checked exactly, by path. Bash is
 # checked by the text of the command, which is a best effort.
@@ -50,6 +52,18 @@ root_open() {
   return 1
 }
 
+# The study folder that holds path $1 in its archive/ or staging/
+# folder, if there is one. Prints nothing otherwise.
+holding_root() {
+  for k in archive staging; do
+    r=$1/
+    while case "$r" in */$k/*) true ;; *) false ;; esac; do
+      r=${r%/$k/*}
+      [ -d "$r/topics" ] && { echo "$r"; return; }
+    done
+  done
+}
+
 tool=$(field tool_name)
 agent=$(field agent_type)
 case "$agent" in
@@ -62,6 +76,7 @@ case "$tool" in
 esac
 
 sealed="the practice record is sealed while an exam on this topic is open, and is never available to the examiner."
+kept="this is a kept copy of a practice record. It is sealed while any exam in the study folder is open."
 
 if [ "$tool" = "Bash" ]; then
   cmd=$(field command)
@@ -91,6 +106,8 @@ case "$path" in
     [ -f "$topic/charter.md" ] || exit 0
     [ "$examiner" = yes ] && deny "$sealed"
     topic_open "$topic" && deny "$sealed"
+    held=$(holding_root "$topic")
+    [ -n "$held" ] && root_open "$held" && deny "$kept"
     ;;
   */topics/*/exams/*.key.md)
     topic=${path%/exams/*}
@@ -121,6 +138,12 @@ case "$path" in
       elif [ -d "$path/topics" ]; then
         [ "$examiner" = yes ] && deny "$sealed Search one topic's exams folder."
         root_open "$path" && deny "$sealed Search one topic's exams folder."
+      fi
+      # The same for a folder in the archive or in staging, which may hold copies.
+      case "$path" in */exams|*/exams/*) held= ;; *) held=$(holding_root "$path") ;; esac
+      if [ -n "$held" ]; then
+        [ "$examiner" = yes ] && deny "$sealed"
+        root_open "$held" && deny "$kept"
       fi
     fi
     ;;
