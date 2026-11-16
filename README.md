@@ -74,6 +74,26 @@ one, and merges two that turned out to be the same subject. A
 merge keeps every record. Exams from the merged-in topic are kept
 as history and certify nothing in the merged topic.
 
+### While you learn
+
+The tutor asks; you answer. Every answer gets a one-line verdict
+(right, partly, or not yet) that says what was missing without
+giving the answer away. At any time you can type:
+
+| You type | What happens |
+|---|---|
+| `hint` | A nudge towards where to look. A second `hint` names the idea |
+| `just tell me` | A short explanation, then the same point is tested again from another side |
+| `skip` | Move on; the point comes back later |
+| `show progress` | Your skill map |
+| `easier` / `harder` | Change the difficulty |
+
+An answer you reach with a hint does not raise your level, so the
+skill map stays honest. A new topic starts with a few placement
+questions; feedback on those comes after the last one. If you
+prefer no hints at all, set `Feedback: strict` in your profile.
+The exam never gives hints.
+
 ### What each kind of topic looks like
 
 | Topic | Learn | Exam ticket |

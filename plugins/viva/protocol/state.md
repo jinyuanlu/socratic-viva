@@ -161,6 +161,7 @@ What an older folder may look like, and how to treat it:
 | A skill-map level that is not a number, such as `unplaced` | Level 0, and `Diagnostic: pending`. Write the number the next time the file is saved |
 | No `asked.md` | Start one at the next question. An exam may repeat practice from before it existed |
 | Charter with no `Also called` line; profile with no `## About the learner` | Empty |
+| Profile with no `Feedback:` line; `learning.md` with no `## Study next` | `guided`; empty |
 
 Real study folders written by earlier versions are kept in the
 repository under `tests/fixtures/`, and every version is tested
@@ -176,13 +177,14 @@ environment. If it is not available, ask the learner. Never guess.
     # Profile
     - Working language: <language used for instruction and records>
     - Display: bars | plain      (plain = no bar characters, for screen readers)
+    - Feedback: guided | strict  (guided = a verdict on every answer, hints on request)
     - Notes: <anything the learner wants every session to respect>
 
     ## About the learner
     - <role, level, background, usual goals: one fact per line>
 
-If there is no profile, use the language the learner writes in and
-`bars` display.
+If there is no profile, use the language the learner writes in,
+`bars` display and `guided` feedback.
 
 `## About the learner` is optional. The tutor adds a fact to it,
 with the learner's agreement, the first time the fact comes up.
@@ -248,6 +250,9 @@ another topic.
 
     ## Sessions
     - YYYY-MM-DD: <one line: what was worked on, what changed>
+
+    ## Study next
+    - <what to read or practise next, and why: at most three lines>
 
     ## Debriefed exams
     - 001

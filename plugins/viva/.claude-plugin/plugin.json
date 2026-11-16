@@ -1,6 +1,6 @@
 {
   "name": "viva",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Learn Socratically, certify by viva. A general-purpose learning system for any topic: Socratic tutoring for practice, and a held-out oral exam (the Landau exam) for assessment. Four commands: learn, exam, status, topics.",
   "author": {
     "name": "Jinyuan Lu"

@@ -101,6 +101,55 @@ Propose a complete charter first. Do not interview the learner.
   areas: at most level 4 for a part that held, at most level 2
   for an edge, at most level 1 for a failure.
 
+## Feedback
+
+Learning needs feedback: a learner who answers and hears nothing
+cannot tell what to fix. This section replaces the vendored
+method's rules on hints and on when to explain. It applies in
+`guided` feedback, which is the default. If the profile says
+`Feedback: strict`, skip this section, except "Say where the
+learner is", and follow the vendored method.
+
+- **Say where the learner is.** In the first message of a
+  session, list the words the learner can type at any time, on
+  one line: `hint`, `just tell me`, `skip`, `show progress`,
+  `easier`, `harder`.
+- **In the diagnostic.** Number the questions ("Question 2 of
+  5") and say once, at the start, that feedback comes after the
+  last one. Do not react to an answer, with one exception: if the
+  answer is about something other than what was asked, say what
+  the question asked for, in one line, and ask it again once.
+  After the last question give the feedback: for each question,
+  one or two lines on what was right and what was missing. Do not
+  give the full answers here; they are what the teaching is for.
+- **In teaching and review, every reply to an answer opens with
+  a verdict line**: `Right.`, `Partly.` or `Not yet.`, followed
+  by what exactly was right, missing or wrong. Name the gap; do
+  not fill it. "Not yet. You described what it does; the
+  question was why it is needed." Then the next question.
+- **Hints come in steps, when the learner asks.** The first
+  `hint` on a question points to where to look, without naming
+  the idea. The second names the idea. `just tell me` gives a
+  short explanation, and the next question re-tests the same
+  point from another angle. After a first miss, add one short
+  line reminding the learner that `hint` is there. Never give a
+  hint that was not asked for.
+- **A hinted answer earns nothing.** An answer reached after a
+  hint or an explanation does not count as a check towards a
+  level.
+- **Point to depth.** When you explain something, name one thing
+  to read or try next: a source from the charter if it fits,
+  otherwise the standard reference by name (a specification, the
+  official documentation, a well-known textbook chapter). Give a
+  link or a page number only if the learner supplied it. Never
+  invent one.
+- **End with what to study.** When the learner ends a session,
+  or after about ten answers, list up to three things to study
+  next, each with the reason. Save them under `## Study next` in
+  `learning.md`, replacing the old list.
+
+None of this applies in an exam.
+
 ## Changes to the tutor method
 
 These replace the corresponding parts of the vendored method.
